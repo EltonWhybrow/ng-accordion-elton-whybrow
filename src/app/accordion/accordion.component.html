@@ -1,42 +1,16 @@
 <h1
   class="uppercase font-bold text-4xl leading-tight pb-5 border-slate-900 border-b-30 mb-8 text-slate-900"
 >
-  Have a quesiton? We can help
+  Have a quesiton? We can help ({{ indexEmittedFromChildComponent }})
 </h1>
 
-<ul>
-  <li
-    id="{{ i }}"
-    *ngFor="let faq of allFaqs; let i = index"
-    class="border-b-2 border-slate-900"
-    (click)="setToActive(i)"
-  >
-    <div
-      class="flex justify-between question p-5 hover:bg-slate-300 cursor-pointer"
-      [class.bg-slate-300]="i === currentlyActiveFaq && isActive"
-    >
-      <span class="font-bold text-4xl basis-1/6">Q{{ faq.id }}</span>
-
-      <h2 class="font-3xl basis-4/6">
-        {{ faq.question }}
-      </h2>
-
-      <span class="flex-none bg-yellow-400 p-2">
-        <img
-          src="assets/plus-icon.svg"
-          alt="plus-icon"
-          [class.-rotate-45]="i === currentlyActiveFaq && isActive"
-          class="transition ease-in-out delay-0 duration-500 w-6 h-6"
-        />
-      </span>
-    </div>
-
-    <div
-      *ngIf="i === currentlyActiveFaq && isActive"
-      [@myAnimation]="isActive"
-      class="answer p-7"
-    >
-      {{ faq.answer }}
-    </div>
-  </li>
-</ul>
+<app-accordion-item
+  *ngFor="let faq of allFaqs; let i = index"
+  [ngClass]="{ active: selectedItem == faq }"
+  (click)="accordClick($event, faq)"
+  id="{{ faq.id }}"
+  question="{{ faq.question }}"
+  answer="{{ faq.answer }}"
+  index="{{ i }}"
+  (emitIndex)="parentEventHandlerFunction($event)"
+></app-accordion-item>

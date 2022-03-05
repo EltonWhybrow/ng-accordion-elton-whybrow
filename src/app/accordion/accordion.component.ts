@@ -1,5 +1,4 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpService } from '../core/http-service.service';
@@ -11,6 +10,18 @@ import { IFaq } from './faq-interface';
   styles: [
   ],
   animations: [
+    trigger('smoothToggle', [
+      state('initial', style({
+        height: '0',
+        overflow: 'hidden',
+        opacity: '0',
+        visibility: 'hidden'
+      })),
+      state('finial', style({
+        overflow: 'hidden'
+      })),
+      transition('initial<=>final', animate('250ms'))
+    ]),
     trigger(
       'myAnimation', [
       transition(':enter', [
@@ -28,12 +39,10 @@ import { IFaq } from './faq-interface';
 export class AccordionComponent implements OnInit {
 
   allFaqs: IFaq[] | undefined;
-  isActive: boolean = false;
-  currentlyActiveFaq: number | undefined;
+  indexEmittedFromChildComponent: number | undefined;
+  selectedItem: any;
 
-  constructor(private httpService: HttpService, private scroller: ViewportScroller) {
-
-  }
+  constructor(private httpService: HttpService) { }
 
   ngOnInit(): void {
     this.httpService.getFaqs()
@@ -44,13 +53,16 @@ export class AccordionComponent implements OnInit {
       );
   }
 
-  setToActive(index: number) {
-    if (this.currentlyActiveFaq != index) {
-      this.currentlyActiveFaq = undefined
-      this.isActive = false;
+  parentEventHandlerFunction(index: any) {
+    this.indexEmittedFromChildComponent = index;
+  }
+
+  accordClick(event: any, newValue: any) {
+    if (this.selectedItem === newValue) {
+      this.selectedItem = undefined;
+    } else {
+      this.selectedItem = newValue;
     }
-    this.currentlyActiveFaq = index;
-    this.isActive = !this.isActive;
   }
 
 

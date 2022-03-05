@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 
 import { CoreModule } from './core/core.module';
 import { AccordionComponent } from './accordion/accordion.component';
+import { AccordionItemComponent } from './accordion/accordion-item/accordion-item.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    AccordionComponent
+    AccordionComponent,
+    AccordionItemComponent
   ],
   imports: [
     CoreModule,

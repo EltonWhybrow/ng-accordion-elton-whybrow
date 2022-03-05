@@ -2,3 +2,24 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.active {
+  .answer {
+    max-height: 500px;
+    transition: max-height 0.5s ease-in;
+  }
+  .cross {
+    transform: rotate(45deg);
+    transition: all 0.5s;
+  }
+}
+
+.cross {
+  transform: rotate(0);
+  transition: all 0.5s;
+}
+.answer {
+  max-height: 0;
+  transition: max-height 0.5s ease-out;
+  overflow: hidden;
+}

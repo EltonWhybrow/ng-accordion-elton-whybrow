@@ -3,23 +3,55 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.active {
-  .answer {
-    max-height: 500px;
-    transition: max-height 0.5s ease-in;
-  }
-  .cross {
-    transform: rotate(45deg);
-    transition: all 0.5s;
+@font-face {
+  font-family: "Oswald-bold";
+  src: url("./assets/fonts/oswald-bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Oswald-reg";
+  src: url("./assets/fonts/oswald-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Oswald-light";
+  src: url("./assets/fonts/oswald-light.ttf") format("truetype");
+}
+
+@layer base {
+  html {
+    font-family: "Oswald-reg", Arial, Helvetica, sans-serif;
   }
 }
 
-.cross {
-  transform: rotate(0);
-  transition: all 0.5s;
+h1 {
+  font-family: "Oswald-bold", Arial, Helvetica, sans-serif;
 }
+
+.active {
+  .question {
+    @apply bg-custom-grey-500;
+  }
+  .answer {
+    max-height: 300px;
+    transition: max-height 0.5s ease-in;
+    overflow: hidden;
+    @apply bg-slate-100;
+  }
+  .cross {
+    transform: rotate(-135deg);
+    transition: transform 0.4s ease-out;
+  }
+}
+
+.number {
+  font-family: "Oswald-bold", Arial, Helvetica, sans-serif;
+}
+
 .answer {
   max-height: 0;
   transition: max-height 0.5s ease-out;
   overflow: hidden;
+}
+.cross {
+  transform: rotate(0);
+  transition: transform 0.4s ease-out;
 }

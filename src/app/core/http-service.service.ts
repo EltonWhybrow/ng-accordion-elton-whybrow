@@ -12,7 +12,7 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getFaqs(): Observable<IFaq[]> {
-    return this.http.get<IFaq[]>('../../assets/faqs.json');
+    return this.http.get<IFaq[]>('../../assets/data/faqs.json');
   }
 
 }

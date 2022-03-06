@@ -8,9 +8,9 @@ describe('AccordionItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccordionItemComponent ]
+      declarations: [AccordionItemComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +19,37 @@ describe('AccordionItemComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create accordion item component', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the faq id next to the faq question', () => {
+    // arrange
+    fixture.componentInstance.id = '1';
+    const compiled = fixture.nativeElement as HTMLElement;
+    // act
+    fixture.detectChanges();
+    // assert
+    expect(compiled.querySelector('.question span')?.textContent).toContain('Q1');
+  });
+
+  it('should render the faq heading in the h2', () => {
+    // arrange
+    fixture.componentInstance.question = 'Question heading';
+    const compiled = fixture.nativeElement as HTMLElement;
+    // act
+    fixture.detectChanges();
+    // assert
+    expect(compiled.querySelector('h2')?.textContent).toContain('Question heading');
+  });
+
+  it('should render the faq question in the paragraph tag', () => {
+    // arrange
+    fixture.componentInstance.answer = 'Answer to question';
+    const compiled = fixture.nativeElement as HTMLElement;
+    // act
+    fixture.detectChanges();
+    // assert
+    expect(compiled.querySelector('.answer p')?.textContent).toContain('Answer to question');
   });
 });

@@ -22,12 +22,21 @@ export class AccordionComponent implements OnInit {
       );
   }
 
-  activateFaq(event: any, newValue: any) {
-    if (this.currentlySelectedFaq === newValue) {
-      this.currentlySelectedFaq = undefined;
-    } else {
-      this.currentlySelectedFaq = newValue;
-    }
+  activateFaq(faqId: any) {
+    this.currentlySelectedFaq === faqId ? this.currentlySelectedFaq = undefined : this.currentlySelectedFaq = faqId;
+    // if (this.currentlySelectedFaq === newValue) {
+    //   this.currentlySelectedFaq = undefined;
+    // } else {
+    //   this.currentlySelectedFaq = newValue;
+    //   this.getFaqInView(event);
+    // }
   }
 
+  // getFaqInView(event: any) {
+  //   let anchor = event.target.parentNode.id;
+  //   const scrollToElement = window.document.getElementById(anchor);
+  //   setTimeout(() => {
+  //     scrollToElement!.scrollIntoView({ behavior: "smooth", block: "start", inline: "nearest" });
+  //   }, 600);
+  // }
 }

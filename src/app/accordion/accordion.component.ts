@@ -32,6 +32,7 @@ export class AccordionComponent implements OnInit {
     // }
   }
 
+  // This could be used to make a better user experience || opinion based really
   // getFaqInView(event: any) {
   //   let anchor = event.target.parentNode.id;
   //   const scrollToElement = window.document.getElementById(anchor);

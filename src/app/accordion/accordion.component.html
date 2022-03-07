@@ -6,7 +6,7 @@
 
 <app-accordion-item
   class="faq-{{ faq.id }}"
-  *ngFor="let faq of allFaqs; let i = index"
+  *ngFor="let faq of allFaqs"
   [ngClass]="{ active: currentlySelectedFaq == faq }"
   (click)="activateFaq(faq)"
   id="{{ faq.id }}"
